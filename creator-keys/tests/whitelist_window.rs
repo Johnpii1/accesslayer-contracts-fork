@@ -26,6 +26,7 @@ fn register_whitelisted_creator(
             addresses: whitelist,
             window_ledgers,
         }),
+        &None,
     );
     creator
 }
@@ -120,6 +121,7 @@ fn test_whitelist_over_500_addresses_reverts_at_registration() {
             addresses,
             window_ledgers: 10,
         }),
+        &None,
     );
 
     assert_eq!(result, Err(Ok(ContractError::WhitelistTooLarge)));
@@ -135,6 +137,7 @@ fn test_none_whitelist_allows_public_buy_immediately() {
     client.register_creator(
         &creator,
         &String::from_str(&env, "alice"),
+        &None,
         &None,
         &None,
         &None,

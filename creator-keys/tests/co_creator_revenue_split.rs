@@ -57,6 +57,7 @@ fn register_creator_with_co_creator(
         &None,
         &None,
         &None,
+        &None,
         &Some(config.clone()),
     );
 
@@ -93,6 +94,7 @@ fn test_register_creator_rejects_invalid_co_creator_share_bps() {
         let result = client.try_register_creator(
             &creator,
             &String::from_str(&env, handle),
+            &None,
             &None,
             &None,
             &None,

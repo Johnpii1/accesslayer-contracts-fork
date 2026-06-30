@@ -78,10 +78,7 @@ pub enum ContractError {
     WhitelistTooLarge = 29,
     InsufficientTreasuryBalance = 30,
     BatchClaimExceedsLimit = 31,
-    InsufficientTreasuryBalance = 28,
-    BatchClaimExceedsLimit = 29,
-    InvalidCoCreatorShare = 30,
-
+    InvalidCoCreatorShare = 32,
 }
 
 pub mod fee {
@@ -1289,7 +1286,6 @@ impl CreatorKeysContract {
         curve_preset: Option<CurvePreset>,
         whitelist_window: Option<WhitelistConfig>,
         co_creator: Option<CoCreatorConfig>,
-
     ) -> Result<(), ContractError> {
         creator.require_auth();
         assert_not_paused(&env)?;
@@ -1405,8 +1401,6 @@ impl CreatorKeysContract {
                 .persistent()
                 .extend_ttl(&co_creator_key, current_ledger, extend_to);
         }
-
-
 
         env.events().publish(
             events::register_event_topics(&profile.creator),
